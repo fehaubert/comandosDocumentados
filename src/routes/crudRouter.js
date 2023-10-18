@@ -11,12 +11,12 @@ router.get('/api', (request, response) => {
 router.post('/api', (request, response) => {
     response.send('Método utilizado para salvar informações!');
     console.log('post');
-    console.log(request.body);
 });
 
 router.put('/api/:id', (request, response) => {
     response.send('Método utilizado para editar informações!');
-    console.log('put')
+    console.log('put');
+    console.log('id', request.params.id)
 });
 
 router.delete('/api/:id', (request, response) => {
