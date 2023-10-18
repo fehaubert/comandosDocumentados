@@ -110,10 +110,7 @@ const { Router } = require("express");
 // Instanciar o Router na variável router
 const router = Router();
 
-router.get('/api', (request, response) => {
-    response.send('Retorno de Informações do banco de dados');
-    console.log('get')
-});
+router.get('/api', listarDados);
 
 router.post('/api', (request, response) => {
     response.send('Método utilizado para salvar informações!');
@@ -149,4 +146,17 @@ mkdir src/controllers
 
 ```
 touch src/controllers/controller.js
+```
+
+### Criar funções para processar as requisições das rotas
+
+```
+function listarDados(request, response) {
+    response.send('Retorno de Informações do banco de dados');
+    console.log('get')
+}
+
+exports.module = {
+    listarDados
+}
 ```
