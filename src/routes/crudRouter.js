@@ -3,24 +3,19 @@ const { Router }      = require("express");
 // Instanciar o Router na variável router
 const router          = Router();
 // Importar funções do controller para a rota acessar
-const { listarDados } = require('../controllers/controller');
+const { 
+    listarDados,
+    gravarDados,
+    atualizarDdados,
+    deletarDados
+ } = require('../controllers/controller');
 
-router.get('/api', listarDados);
+router.get('/listar', listarDados);
 
-router.post('/api', (request, response) => {
-    response.send('Método utilizado para salvar informações!');
-    console.log('post');
-});
+router.post('/gravar', gravarDados);
 
-router.put('/api/:id', (request, response) => {
-    response.send('Método utilizado para editar informações!');
-    console.log('put');
-    console.log('id', request.params.id)
-});
+router.put('/atualizar/:id', atualizarDdados);
 
-router.delete('/api/:id', (request, response) => {
-    response.send('Método utilizado para deletar informações!');
-    console.log('delete')
-});
+router.delete('/deletar/:id', deletarDados);
 
 module.exports = router;
