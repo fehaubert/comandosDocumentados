@@ -25,7 +25,7 @@ Criar arquivo .env: armazenará as variáveis do ambiente
 ```
 touch .env
 ```
-Instalar pacotes da API
+# Instalar pacotes da API
 ```
 npm i express nodemon dotenv mysql2
 ```
