@@ -208,3 +208,41 @@ connection.connect( (err) => {
 
 module.exports = connection;
 ```
+
+## Criar banco de dados 
+
+* Criar database 
+* Dar um use na database criada
+* Criar tabelas
+
+### Criar a database
+```
+create database turma_2at;
+```
+* CTRL + Enter: para executar o comando sql
+
+### Selecionar a database
+```
+use turma_2at;
+```
+
+### Criar tabela alunos
+```
+crate table alunos(
+    id int not null auto_increment,
+    nome varchar(120) not null,
+    dt_nascimento date not null,
+    time_do_coração varchar(120),
+    primary key(id)
+);
+```
+
+### Criar tabela users
+
+```
+crate table users(
+    id int not null auto_increment,
+    ds_nome varchar(120),
+    primary key(id)
+);
+```
