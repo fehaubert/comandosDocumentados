@@ -38,7 +38,7 @@ async function cadastrarAluno(request, response) {
     // 4° passo: definir retornos da requisição
 
     // Recuperando dados da requisição
-    const params = Arrey(
+    const params = Array(
         request.body.nome,
         request.body.dt_nascimento,
         request.body.time_do_coracao

@@ -2,6 +2,7 @@
 const express = require("express");
 // Instanciar o express na variável app
 const app = express();
+app.use(express.json());
 
 // Importar as rotas para serem executadas na aplicação
 const crudRouter = require('./routes/crudRouter');
