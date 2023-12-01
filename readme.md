@@ -40,6 +40,27 @@ touch .env
 ```
 * Arquivo reponsável por armazenar as variáveis de ambiente
 
+Criar arquivo .env.exemple
+```
+touch .env.exemple
+```
+* Arquivo reponsável por definir as variáveis de ambiente sem os valores
+
+Colar as variáveis no arquivo '.env.exemple'
+```
+# DEFINIÇÃO DA PORTA DO SERVIDOR EXPRESS
+PORT = 
+
+# VARIÁVEISDE CONEXÃO COM BANCO
+DB_HOST = 
+DB_USER = 
+DB_PASSWORD = 
+DB_DATABASE = 
+DB_PORT = 
+```
+* Por padrão o pacote mysql2 espera a conexão com banco de dados na porta 3306
+* Se o MySql não foi instalado na porta 3306, precisamos informar a porta do MySQL no arquivo '.env' e recuperar no arquivo "db.js" para acessar o banco
+
 Informar arquivos e pastas no .gitignore
 ```
 node_modules
@@ -68,14 +89,59 @@ const PORT = app.get('port');
 app.listen(PORT, () => console.log(`Running at port ${PORT}`));
 ```
 
-Criar comando para rodar o servidor
+Criar arquivo app.js na pasta src
+
+```
+touch src/app.js
+```
+* Arquivo responsável por configurar a aplicação
+
+Colar o código de configuração no arquivo 'app.js'
+```
+// Importar pacote do express
+const express = require("express");
+// Instanciar o express na variável app
+const app = express();
+app.use(express.json());
+
+// Importar as rotas para serem executadas na aplicação
+const crudRouter = require('./routes/crudRouter');
+// Importar as rotas para serem executadas na aplicação
+const alunosRouter = require('./routes/alunosRouter');
+
+// Importar o pacote dotenv
+const dotenv = require('dotenv').config();
+
+// Habilitar a utilização do crudRouter
+app.use('/api', crudRouter);
+// Habilitar a utilização do alunosRouter
+app.use('/api', alunosRouter);
+
+// Setar a porta do servidor, a partir do arquivo .env
+app.set('port', process.env.PORT);
+
+// Exportar as configurações do app para outros arquivos acessarem
+module.exports = app; 
+```
+
+Criar comando para rodar o servidor no arquivo 'package.json'
 ```
 "start":"nodemon src/server.js"
 ```
+* Substituir o comando 'test' dentro da chava scripts pelo comando 'start' acima
+* Este comando é responsável por rodar a API
 
-Rodar o comando no terminal
+Após esta configuração o arquivo 'package.json' deve estar conforme a imagem abaixo
+
+<img src="./imagens/package_json.png">
+
+Rodar o comando no terminal com gitBash
 ```
 npm run start
+```
+Parar o servidor no terminal com gitBah
+```
+Ctrl + C
 ```
 
 ## Criar estrutura para o projeto
